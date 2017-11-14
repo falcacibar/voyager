@@ -22,6 +22,9 @@ class MenuItemPolicy extends BasePolicy
         $slug = preg_replace('/'.$regex.'/', '', $model->link(true));
         $slug = str_replace('/', '', $slug);
 
+        if(($queryStringCharPos = strpos($slug, '?')) !== false)
+            $slug = substr($slug, 0, $queryStringCharPos);
+
         if ($resolvedDataType = DataType::whereSlug($slug)->first()) {
             $slug = $resolvedDataType->name;
         }

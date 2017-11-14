@@ -54,11 +54,13 @@ window.onload = function () {
             $bulkDeleteDisplayName.html(displayName);
             // Gather IDs
             $.each($checkedBoxes, function () {
-                var value = $(this).val();
+                var value = $(this).prop('id').substr(9);
+
                 ids.push(value);
             })
+
             // Set input value
-            $bulkDeleteInput.val(ids);
+            $bulkDeleteInput[0].value = ids.join(',');
             // Show modal
             $bulkDeleteModal.modal('show');
         } else {
